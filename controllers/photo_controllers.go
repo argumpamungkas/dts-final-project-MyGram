@@ -17,7 +17,7 @@ import (
 // CreatePhoto godoc
 // @Summary Post Photo
 // @Description Post a new Photo, NOTE : id auto increment, so in body id is deleted
-// @Tags Create Photo
+// @Tags Photo
 // @Accept json
 // @Produce json
 // @Param models.Photo body models.Photo true "create photo"
@@ -77,7 +77,7 @@ func CreatePhoto(ctx *gin.Context) {
 // GetAllPhoto godoc
 // @Summary Get details of All photo
 // @Description Get details of all photo or add query parameter user_id for all photo from user_id
-// @Tags Get All Photo
+// @Tags Photo
 // @Accept json
 // @Produce json
 // @Success 200 {object} models.Photo
@@ -124,7 +124,7 @@ func GetAllPhoto(ctx *gin.Context) {
 // GetOnePhoto godoc
 // @Summary Get details for a given photoID
 // @Description Get details of photo corresponding to the input photoID
-// @Tags Get Photo by ID
+// @Tags Photo
 // @Accept json
 // @Produce json
 // @Param photoID path integer true "ID of the photo"
@@ -157,7 +157,7 @@ func GetOnePhoto(ctx *gin.Context) {
 // UpdatePhoto godoc
 // @Summary Updated data photo with socialMediaID
 // @Description Update data social media by id, NOTE: photo is not updated, just title and caption can be updated, so in the body photo_url doesn't use
-// @Tags Update Photo
+// @Tags Photo
 // @Accept json
 // @Produce json
 // @Param photoID path integer true "photoID of the data photo to be updated"
@@ -220,7 +220,7 @@ func UpdatePhoto(ctx *gin.Context) {
 // DeletePhoto godoc
 // @Summary Delete data photo with photoID
 // @Description Delete data photo by id
-// @Tags Delete Photo
+// @Tags Photo
 // @Accept json
 // @Produce json
 // @Param photoID path integer true "photoID of the data photo to be deleted"

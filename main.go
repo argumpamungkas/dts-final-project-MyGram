@@ -7,7 +7,7 @@ import (
 
 // @title My Gram API
 // @version 1.0
-// @description This is a final project
+// @description This is a final project Hacktiv8
 // @host localhost:8080
 // @BasePath /
 func main() {

@@ -15,7 +15,7 @@ import (
 // CreateComment godoc
 // @Summary Post Comment
 // @Description Post a new Comment, NOTE : id auto increment, so in body id is deleted. and add query parameter photo_id for comment
-// @Tags Create Comment
+// @Tags Comment
 // @Accept json
 // @Produce json
 // @Param models.Comment body models.Comment true "create comment"
@@ -76,7 +76,7 @@ func CreateComment(ctx *gin.Context) {
 // GetAllComment godoc
 // @Summary Get details of All comment
 // @Description Get details of all comment or add query parameter photo_id for all comment from photo_id
-// @Tags Get All Comment
+// @Tags Comment
 // @Accept json
 // @Produce json
 // @Success 200 {object} models.Comment
@@ -139,7 +139,7 @@ func GetAllComent(ctx *gin.Context) {
 // GetOneComment godoc
 // @Summary Get details for a given commentID
 // @Description Get details of comment corresponding to the input commentID
-// @Tags Get Comment by ID
+// @Tags Comment
 // @Accept json
 // @Produce json
 // @Param commentID path integer true "ID of the photo"
@@ -173,7 +173,7 @@ func GetOneComment(ctx *gin.Context) {
 // UpdateComment godoc
 // @Summary Updated data comment with commentID
 // @Description Update data comment by id
-// @Tags Update Comment
+// @Tags Comment
 // @Accept json
 // @Produce json
 // @Param commentID path integer true "commentID of the data comment to be updated"
@@ -233,7 +233,7 @@ func UpdateComment(ctx *gin.Context) {
 // DeleteComment godoc
 // @Summary Delete data comment with commentID
 // @Description Delete data comment by id
-// @Tags Delete Comment
+// @Tags Comment
 // @Accept json
 // @Produce json
 // @Param commentID path integer true "commentID of the data comment to be deleted"

@@ -26,7 +26,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Delete Comment"
+                    "Comment"
                 ],
                 "summary": "Delete data comment with commentID",
                 "parameters": [
@@ -58,7 +58,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Get All Comment"
+                    "Comment"
                 ],
                 "summary": "Get details of All comment",
                 "responses": {
@@ -81,7 +81,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Get Comment by ID"
+                    "Comment"
                 ],
                 "summary": "Get details for a given commentID",
                 "parameters": [
@@ -113,7 +113,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Create Comment"
+                    "Comment"
                 ],
                 "summary": "Post Comment",
                 "parameters": [
@@ -147,7 +147,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Update Comment"
+                    "Comment"
                 ],
                 "summary": "Updated data comment with commentID",
                 "parameters": [
@@ -188,7 +188,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Delete Photo"
+                    "Photo"
                 ],
                 "summary": "Delete data photo with photoID",
                 "parameters": [
@@ -220,7 +220,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Get All Photo"
+                    "Photo"
                 ],
                 "summary": "Get details of All photo",
                 "responses": {
@@ -243,7 +243,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Get Photo by ID"
+                    "Photo"
                 ],
                 "summary": "Get details for a given photoID",
                 "parameters": [
@@ -275,7 +275,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Create Photo"
+                    "Photo"
                 ],
                 "summary": "Post Photo",
                 "parameters": [
@@ -309,7 +309,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Update Photo"
+                    "Photo"
                 ],
                 "summary": "Updated data photo with socialMediaID",
                 "parameters": [
@@ -350,7 +350,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Create Social Media"
+                    "Social Media"
                 ],
                 "summary": "Post Social media",
                 "parameters": [
@@ -384,7 +384,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Delete Social Media"
+                    "Social Media"
                 ],
                 "summary": "Delete data social media with socialMediaID",
                 "parameters": [
@@ -416,7 +416,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Get All Social Media"
+                    "Social Media"
                 ],
                 "summary": "Get details of All social media",
                 "responses": {
@@ -439,7 +439,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Get Social Media by ID"
+                    "Social Media"
                 ],
                 "summary": "Get details for a given socialMediaID",
                 "parameters": [
@@ -471,7 +471,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Update Social Media"
+                    "Social Media"
                 ],
                 "summary": "Updated data social media with socialMediaID",
                 "parameters": [
@@ -512,7 +512,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Login user"
+                    "Login"
                 ],
                 "summary": "Login User",
                 "parameters": [
@@ -670,7 +670,7 @@ var SwaggerInfo = &swag.Spec{
 	BasePath:         "/",
 	Schemes:          []string{},
 	Title:            "My Gram API",
-	Description:      "This is a final project",
+	Description:      "This is a final project Hacktiv8",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 }

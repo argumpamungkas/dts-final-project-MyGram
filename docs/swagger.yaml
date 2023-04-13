@@ -83,7 +83,7 @@ definitions:
 host: localhost:8080
 info:
   contact: {}
-  description: This is a final project
+  description: This is a final project Hacktiv8
   title: My Gram API
   version: "1.0"
 paths:
@@ -107,7 +107,7 @@ paths:
             $ref: '#/definitions/models.Comment'
       summary: Delete data comment with commentID
       tags:
-      - Delete Comment
+      - Comment
   /comment/getAll:
     get:
       consumes:
@@ -123,7 +123,7 @@ paths:
             $ref: '#/definitions/models.Comment'
       summary: Get details of All comment
       tags:
-      - Get All Comment
+      - Comment
   /comment/getOne/{commentID}:
     get:
       consumes:
@@ -144,7 +144,7 @@ paths:
             $ref: '#/definitions/models.Comment'
       summary: Get details for a given commentID
       tags:
-      - Get Comment by ID
+      - Comment
   /comment/post:
     post:
       consumes:
@@ -167,7 +167,7 @@ paths:
             $ref: '#/definitions/models.Comment'
       summary: Post Comment
       tags:
-      - Create Comment
+      - Comment
   /comment/update/{commentID}:
     put:
       consumes:
@@ -194,7 +194,7 @@ paths:
             $ref: '#/definitions/models.Comment'
       summary: Updated data comment with commentID
       tags:
-      - Update Comment
+      - Comment
   /photo/delete/{photoID}:
     delete:
       consumes:
@@ -215,7 +215,7 @@ paths:
             $ref: '#/definitions/models.Photo'
       summary: Delete data photo with photoID
       tags:
-      - Delete Photo
+      - Photo
   /photo/getAll:
     get:
       consumes:
@@ -231,7 +231,7 @@ paths:
             $ref: '#/definitions/models.Photo'
       summary: Get details of All photo
       tags:
-      - Get All Photo
+      - Photo
   /photo/getOne/{photoID}:
     get:
       consumes:
@@ -252,7 +252,7 @@ paths:
             $ref: '#/definitions/models.Photo'
       summary: Get details for a given photoID
       tags:
-      - Get Photo by ID
+      - Photo
   /photo/post:
     post:
       consumes:
@@ -274,7 +274,7 @@ paths:
             $ref: '#/definitions/models.Photo'
       summary: Post Photo
       tags:
-      - Create Photo
+      - Photo
   /photo/update/{photoID}:
     put:
       consumes:
@@ -302,7 +302,7 @@ paths:
             $ref: '#/definitions/models.Photo'
       summary: Updated data photo with socialMediaID
       tags:
-      - Update Photo
+      - Photo
   /social-media/create:
     post:
       consumes:
@@ -325,7 +325,7 @@ paths:
             $ref: '#/definitions/models.SocialMedia'
       summary: Post Social media
       tags:
-      - Create Social Media
+      - Social Media
   /social-media/delete/{socialMediaID}:
     delete:
       consumes:
@@ -346,7 +346,7 @@ paths:
             $ref: '#/definitions/models.SocialMedia'
       summary: Delete data social media with socialMediaID
       tags:
-      - Delete Social Media
+      - Social Media
   /social-media/getAll:
     get:
       consumes:
@@ -362,7 +362,7 @@ paths:
             $ref: '#/definitions/models.SocialMedia'
       summary: Get details of All social media
       tags:
-      - Get All Social Media
+      - Social Media
   /social-media/getOne/{socialMediaID}:
     get:
       consumes:
@@ -383,7 +383,7 @@ paths:
             $ref: '#/definitions/models.SocialMedia'
       summary: Get details for a given socialMediaID
       tags:
-      - Get Social Media by ID
+      - Social Media
   /social-media/update/{socialMediaID}:
     put:
       consumes:
@@ -410,7 +410,7 @@ paths:
             $ref: '#/definitions/models.SocialMedia'
       summary: Updated data social media with socialMediaID
       tags:
-      - Update Social Media
+      - Social Media
   /user/login:
     post:
       consumes:
@@ -433,5 +433,5 @@ paths:
             $ref: '#/definitions/models.User'
       summary: Login User
       tags:
-      - Login user
+      - Login
 swagger: "2.0"

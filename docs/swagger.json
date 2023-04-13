@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "This is a final project",
+        "description": "This is a final project Hacktiv8",
         "title": "My Gram API",
         "contact": {},
         "version": "1.0"
@@ -19,7 +19,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Delete Comment"
+                    "Comment"
                 ],
                 "summary": "Delete data comment with commentID",
                 "parameters": [
@@ -51,7 +51,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Get All Comment"
+                    "Comment"
                 ],
                 "summary": "Get details of All comment",
                 "responses": {
@@ -74,7 +74,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Get Comment by ID"
+                    "Comment"
                 ],
                 "summary": "Get details for a given commentID",
                 "parameters": [
@@ -106,7 +106,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Create Comment"
+                    "Comment"
                 ],
                 "summary": "Post Comment",
                 "parameters": [
@@ -140,7 +140,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Update Comment"
+                    "Comment"
                 ],
                 "summary": "Updated data comment with commentID",
                 "parameters": [
@@ -181,7 +181,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Delete Photo"
+                    "Photo"
                 ],
                 "summary": "Delete data photo with photoID",
                 "parameters": [
@@ -213,7 +213,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Get All Photo"
+                    "Photo"
                 ],
                 "summary": "Get details of All photo",
                 "responses": {
@@ -236,7 +236,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Get Photo by ID"
+                    "Photo"
                 ],
                 "summary": "Get details for a given photoID",
                 "parameters": [
@@ -268,7 +268,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Create Photo"
+                    "Photo"
                 ],
                 "summary": "Post Photo",
                 "parameters": [
@@ -302,7 +302,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Update Photo"
+                    "Photo"
                 ],
                 "summary": "Updated data photo with socialMediaID",
                 "parameters": [
@@ -343,7 +343,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Create Social Media"
+                    "Social Media"
                 ],
                 "summary": "Post Social media",
                 "parameters": [
@@ -377,7 +377,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Delete Social Media"
+                    "Social Media"
                 ],
                 "summary": "Delete data social media with socialMediaID",
                 "parameters": [
@@ -409,7 +409,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Get All Social Media"
+                    "Social Media"
                 ],
                 "summary": "Get details of All social media",
                 "responses": {
@@ -432,7 +432,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Get Social Media by ID"
+                    "Social Media"
                 ],
                 "summary": "Get details for a given socialMediaID",
                 "parameters": [
@@ -464,7 +464,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Update Social Media"
+                    "Social Media"
                 ],
                 "summary": "Updated data social media with socialMediaID",
                 "parameters": [
@@ -505,7 +505,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Login user"
+                    "Login"
                 ],
                 "summary": "Login User",
                 "parameters": [

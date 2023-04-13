@@ -47,7 +47,7 @@ func RegisterUser(ctx *gin.Context) {
 // LoginUser godoc
 // @Summary Login User
 // @Description Login user needed for crud of the photo, social media and comment because if you login you have token for that
-// @Tags Login user
+// @Tags Login
 // @Accept json
 // @Produce json
 // @Param models.User body models.User true "login user"

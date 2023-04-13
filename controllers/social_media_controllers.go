@@ -15,7 +15,7 @@ import (
 // CreateSocialMedia godoc
 // @Summary Post Social media
 // @Description Post create a new social media, NOTE : id auto increment, so in body id is deleted
-// @Tags Create Social Media
+// @Tags Social Media
 // @Accept json
 // @Produce json
 // @Param models.SocialMedia body models.SocialMedia true "create social media"
@@ -64,7 +64,7 @@ func CreateSocialMedia(ctx *gin.Context) {
 // GetAllSocialMedia godoc
 // @Summary Get details of All social media
 // @Description Get details of all social media or add query parameter user_id for all social media from it
-// @Tags Get All Social Media
+// @Tags Social Media
 // @Accept json
 // @Produce json
 // @Success 200 {object} models.SocialMedia
@@ -115,7 +115,7 @@ func GetAllSocialMedia(ctx *gin.Context) {
 // GetOneSocialMedia godoc
 // @Summary Get details for a given socialMediaID
 // @Description Get details of social media corresponding to the input socialMediaID
-// @Tags Get Social Media by ID
+// @Tags Social Media
 // @Accept json
 // @Produce json
 // @Param socialMediaID path integer true "ID of the social media"
@@ -149,7 +149,7 @@ func GetOneSocialMedia(ctx *gin.Context) {
 // UpdateSocialMedia godoc
 // @Summary Updated data social media with socialMediaID
 // @Description Update data social media by id
-// @Tags Update Social Media
+// @Tags Social Media
 // @Accept json
 // @Produce json
 // @Param socialMediaID path integer true "socialMediaID of the data social media to be updated"
@@ -216,7 +216,7 @@ func UpdateSocialMedia(ctx *gin.Context) {
 // DeleteSocialMedia godoc
 // @Summary Delete data social media with socialMediaID
 // @Description Delete data social media by id
-// @Tags Delete Social Media
+// @Tags Social Media
 // @Accept json
 // @Produce json
 // @Param socialMediaID path integer true "socialMediaID of the data social media to be deleted"
