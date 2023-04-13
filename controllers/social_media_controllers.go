@@ -12,6 +12,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// CreateSocialMedia godoc
+// @Summary Post Social media
+// @Description Post create a new social media, NOTE : id auto increment, so in body id is deleted
+// @Tags Create Social Media
+// @Accept json
+// @Produce json
+// @Param models.SocialMedia body models.SocialMedia true "create social media"
+// @Success 201 {object} models.SocialMedia
+// @Router /social-media/create [post]
 func CreateSocialMedia(ctx *gin.Context) {
 	var socialMedia models.SocialMedia
 
@@ -52,6 +61,14 @@ func CreateSocialMedia(ctx *gin.Context) {
 
 }
 
+// GetAllSocialMedia godoc
+// @Summary Get details of All social media
+// @Description Get details of all social media or add query parameter user_id for all social media from it
+// @Tags Get All Social Media
+// @Accept json
+// @Produce json
+// @Success 200 {object} models.SocialMedia
+// @Router /social-media/getAll [get]
 func GetAllSocialMedia(ctx *gin.Context) {
 	var socialMedia []models.SocialMedia
 
@@ -95,6 +112,15 @@ func GetAllSocialMedia(ctx *gin.Context) {
 	})
 }
 
+// GetOneSocialMedia godoc
+// @Summary Get details for a given socialMediaID
+// @Description Get details of social media corresponding to the input socialMediaID
+// @Tags Get Social Media by ID
+// @Accept json
+// @Produce json
+// @Param socialMediaID path integer true "ID of the social media"
+// @Success 200 {object} models.SocialMedia
+// @Router /social-media/getOne/{socialMediaID} [get]
 func GetOneSocialMedia(ctx *gin.Context) {
 	var socialMedia models.SocialMedia
 
@@ -120,6 +146,18 @@ func GetOneSocialMedia(ctx *gin.Context) {
 
 }
 
+// UpdateSocialMedia godoc
+// @Summary Updated data social media with socialMediaID
+// @Description Update data social media by id
+// @Tags Update Social Media
+// @Accept json
+// @Produce json
+// @Param socialMediaID path integer true "socialMediaID of the data social media to be updated"
+// @Param models.SocialMedia body models.SocialMedia true "updated social media"
+// @Success 200 {object} models.SocialMedia
+// @Failed 400 {object} if bad request
+// @Failed 404 if id social media not found
+// @Router /social-media/update/{socialMediaID} [put]
 func UpdateSocialMedia(ctx *gin.Context) {
 	var socialMedia, findSocialMedia models.SocialMedia
 
@@ -175,6 +213,15 @@ func UpdateSocialMedia(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, socialMedia)
 }
 
+// DeleteSocialMedia godoc
+// @Summary Delete data social media with socialMediaID
+// @Description Delete data social media by id
+// @Tags Delete Social Media
+// @Accept json
+// @Produce json
+// @Param socialMediaID path integer true "socialMediaID of the data social media to be deleted"
+// @Success 200 {object} models.SocialMedia
+// @Router /social-media/delete/{socialMediaID} [delete]
 func DeleteSocialMedia(ctx *gin.Context) {
 	var socialMedia models.SocialMedia
 

@@ -4,6 +4,11 @@ import (
 	"DTS/Chapter-3/final-project-myGram/controllers"
 	"DTS/Chapter-3/final-project-myGram/middlewares"
 
+	_ "DTS/Chapter-3/final-project-myGram/docs"
+
+	swaggerfiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -52,16 +57,23 @@ func StartServer() *gin.Engine {
 	{
 		socialMediaRouter.Use(middlewares.Authetication())
 
+		// Create
 		socialMediaRouter.POST("/create", controllers.CreateSocialMedia)
 
+		// Read All
 		socialMediaRouter.GET("/getAll", controllers.GetAllSocialMedia)
 
+		// Read
 		socialMediaRouter.GET("/getOne/:socialMediaID", controllers.GetOneSocialMedia)
 
+		// Update
 		socialMediaRouter.PUT("/update/:socialMediaID", middlewares.SocialMediaAuthorization(), controllers.UpdateSocialMedia)
 
+		// Delete
 		socialMediaRouter.DELETE("/delete/:socialMediaID", middlewares.SocialMediaAuthorization(), controllers.DeleteSocialMedia)
 	}
+
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 
 	return r
 }

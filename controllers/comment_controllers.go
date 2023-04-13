@@ -12,6 +12,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// CreateComment godoc
+// @Summary Post Comment
+// @Description Post a new Comment, NOTE : id auto increment, so in body id is deleted. and add query parameter photo_id for comment
+// @Tags Create Comment
+// @Accept json
+// @Produce json
+// @Param models.Comment body models.Comment true "create comment"
+// @Success 201 {object} models.Comment
+// @Router /comment/post [post]
 func CreateComment(ctx *gin.Context) {
 	var comment models.Comment
 	var photo models.Photo
@@ -64,6 +73,14 @@ func CreateComment(ctx *gin.Context) {
 
 }
 
+// GetAllComment godoc
+// @Summary Get details of All comment
+// @Description Get details of all comment or add query parameter photo_id for all comment from photo_id
+// @Tags Get All Comment
+// @Accept json
+// @Produce json
+// @Success 200 {object} models.Comment
+// @Router /comment/getAll [get]
 func GetAllComent(ctx *gin.Context) {
 	var comment []models.Comment
 	var photo models.Photo
@@ -119,6 +136,16 @@ func GetAllComent(ctx *gin.Context) {
 	})
 }
 
+// GetOneComment godoc
+// @Summary Get details for a given commentID
+// @Description Get details of comment corresponding to the input commentID
+// @Tags Get Comment by ID
+// @Accept json
+// @Produce json
+// @Param commentID path integer true "ID of the photo"
+// @Success 200 {object} models.Comment
+// @Failed 404 if id comment not found
+// @Router /comment/getOne/{commentID} [get]
 func GetOneComment(ctx *gin.Context) {
 	var comment models.Comment
 
@@ -143,6 +170,18 @@ func GetOneComment(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, comment)
 }
 
+// UpdateComment godoc
+// @Summary Updated data comment with commentID
+// @Description Update data comment by id
+// @Tags Update Comment
+// @Accept json
+// @Produce json
+// @Param commentID path integer true "commentID of the data comment to be updated"
+// @Param models.Comment body models.Comment true "updated comment"
+// @Success 200 {object} models.Comment
+// @Failed 400 {object} if bad request
+// @Failed 404 if id comment not found
+// @Router /comment/update/{commentID} [put]
 func UpdateComment(ctx *gin.Context) {
 	var comment, findComment models.Comment
 
@@ -191,6 +230,16 @@ func UpdateComment(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, comment)
 }
 
+// DeleteComment godoc
+// @Summary Delete data comment with commentID
+// @Description Delete data comment by id
+// @Tags Delete Comment
+// @Accept json
+// @Produce json
+// @Param commentID path integer true "commentID of the data comment to be deleted"
+// @Success 200 {object} models.Comment
+// @Failed 404 if id comment not found
+// @Router /comment/delete/{commentID} [delete]
 func DeleteComent(ctx *gin.Context) {
 	var comment models.Comment
 
