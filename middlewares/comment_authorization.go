@@ -12,7 +12,7 @@ import (
 
 func CommentAuthorization() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-		var comment models.Photo
+		var comment models.Comment
 		db := repo.GetDB()
 
 		commentID, err := strconv.Atoi(ctx.Param("commentID"))
@@ -29,7 +29,7 @@ func CommentAuthorization() gin.HandlerFunc {
 		err = db.Debug().Select("user_id").First(&comment, uint(commentID)).Error
 		if err != nil {
 			ctx.AbortWithStatusJSON(http.StatusNotFound, gin.H{
-				"message": "Photo doesn't exist",
+				"message": "Comment doesn't exist",
 			})
 			return
 		}
@@ -37,7 +37,7 @@ func CommentAuthorization() gin.HandlerFunc {
 		if comment.UserID != userID {
 			ctx.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{
 				"error":   "Unauthorized",
-				"message": "You are not allowed to access this data photo",
+				"message": "You are not allowed to access this comment",
 			})
 			return
 		}
