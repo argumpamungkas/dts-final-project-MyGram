@@ -69,6 +69,17 @@ definitions:
       username:
         type: string
     type: object
+  models.RequestUserRegister:
+    properties:
+      age:
+        type: integer
+      email:
+        type: string
+      password:
+        type: string
+      username:
+        type: string
+    type: object
   models.ResponseFailed:
     properties:
       message:
@@ -93,6 +104,35 @@ definitions:
         type: string
       user_id:
         type: integer
+    type: object
+  models.User:
+    properties:
+      age:
+        type: integer
+      comments:
+        items:
+          $ref: '#/definitions/models.Comment'
+        type: array
+      created_at:
+        type: string
+      email:
+        type: string
+      id:
+        type: integer
+      password:
+        type: string
+      photos:
+        items:
+          $ref: '#/definitions/models.Photo'
+        type: array
+      socials_media:
+        items:
+          $ref: '#/definitions/models.SocialMedia'
+        type: array
+      updated_at:
+        type: string
+      username:
+        type: string
     type: object
 host: localhost:8080
 info:
@@ -648,8 +688,7 @@ paths:
     post:
       consumes:
       - application/json
-      description: Login user needed for crud of the photo, social media and comment
-        because if you login you have token for that
+      description: Login user for have token (jwt)
       parameters:
       - description: User Login
         in: body
@@ -674,7 +713,33 @@ paths:
             $ref: '#/definitions/models.ResponseFailed'
       summary: Login User
       tags:
-      - Login
+      - User
+  /user/register:
+    post:
+      consumes:
+      - application/json
+      description: Register user for my gram
+      parameters:
+      - description: User Register
+        in: body
+        name: UserRegister
+        required: true
+        schema:
+          $ref: '#/definitions/models.RequestUserRegister'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.User'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.ResponseFailed'
+      summary: Register User
+      tags:
+      - User
 securityDefinitions:
   BearerAuth:
     in: header -> Bearer

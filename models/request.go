@@ -6,6 +6,14 @@ type RequestUserLogin struct {
 	Password string `json:"password"`
 }
 
+// RequestUserRegister represents the model for an User Register
+type RequestUserRegister struct {
+	Username string `json:"username"`
+	Password string `json:"password"`
+	Email    string `json:"email"`
+	Age      uint   `json:"age"`
+}
+
 // RequestSocialMedia represents the model for an Social Media
 type RequestSocialMedia struct {
 	Name           string `json:"name"`

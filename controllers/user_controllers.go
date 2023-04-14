@@ -11,6 +11,16 @@ import (
 
 var appJson = "application/json"
 
+// RegisterUser godoc
+// @Summary Register User
+// @Description Register user for my gram
+// @Tags User
+// @Accept json
+// @Produce json
+// @Param UserRegister body models.RequestUserRegister true "User Register"
+// @Success 200 {object} models.User
+// @Failure 400 {object} models.ResponseFailed
+// @Router /user/register [post]
 func RegisterUser(ctx *gin.Context) {
 	var user models.User
 
@@ -46,8 +56,8 @@ func RegisterUser(ctx *gin.Context) {
 
 // LoginUser godoc
 // @Summary Login User
-// @Description Login user needed for crud of the photo, social media and comment because if you login you have token for that
-// @Tags Login
+// @Description Login user for have token (jwt)
+// @Tags User
 // @Accept json
 // @Produce json
 // @Param UserLogin body models.RequestUserLogin true "User Login"
