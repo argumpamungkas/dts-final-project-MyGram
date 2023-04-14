@@ -677,7 +677,7 @@ paths:
       - Login
 securityDefinitions:
   BearerAuth:
-    in: header
+    in: header -> Bearer
     name: Authorization
     type: apiKey
 swagger: "2.0"

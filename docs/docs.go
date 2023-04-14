@@ -1060,7 +1060,7 @@ const docTemplate = `{
         "BearerAuth": {
             "type": "apiKey",
             "name": "Authorization",
-            "in": "header"
+            "in": "header -\u003e Bearer"
         }
     }
 }`

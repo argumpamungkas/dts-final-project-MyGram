@@ -12,7 +12,7 @@ import (
 // @BasePath /
 
 // @securityDefinitions.apikey BearerAuth
-// @in header
+// @in header -> Bearer
 // @name Authorization
 func main() {
 
