@@ -13,14 +13,19 @@ import (
 )
 
 // CreateComment godoc
-// @Summary Post Comment
-// @Description Post a new Comment, NOTE : id auto increment, so in body id is deleted. and add query parameter photo_id for comment
+// @Summary Create Comment
+// @Description Post a new Comment and add query parameter photo_id for comment
 // @Tags Comment
 // @Accept json
 // @Produce json
-// @Param models.Comment body models.Comment true "create comment"
+// @Security BearerAuth
+// @Param photo_id query integer true "Photo for comment"
+// @Param CreateComment body models.RequestComment true "Create comment"
 // @Success 201 {object} models.Comment
-// @Router /comment/post [post]
+// @Failure 400 {object} models.ResponseFailed
+// @Failure 401 {object} models.ResponseFailedUnauthorized
+// @Failure 404 {object} models.ResponseFailed
+// @Router /comment/create [post]
 func CreateComment(ctx *gin.Context) {
 	var comment models.Comment
 	var photo models.Photo
@@ -79,7 +84,12 @@ func CreateComment(ctx *gin.Context) {
 // @Tags Comment
 // @Accept json
 // @Produce json
+// @Security BearerAuth
+// @Param photo_id query integer false "Get all comment from photo_id"
 // @Success 200 {object} models.Comment
+// @Failure 400 {object} models.ResponseFailed
+// @Failure 401 {object} models.ResponseFailedUnauthorized
+// @Failure 404 {object} models.ResponseFailed
 // @Router /comment/getAll [get]
 func GetAllComent(ctx *gin.Context) {
 	var comment []models.Comment
@@ -142,9 +152,12 @@ func GetAllComent(ctx *gin.Context) {
 // @Tags Comment
 // @Accept json
 // @Produce json
+// @Security BearerAuth
 // @Param commentID path integer true "ID of the photo"
 // @Success 200 {object} models.Comment
-// @Failed 404 if id comment not found
+// @Failure 400 {object} models.ResponseFailed
+// @Failure 401 {object} models.ResponseFailedUnauthorized
+// @Failure 404 {object} models.ResponseFailed
 // @Router /comment/getOne/{commentID} [get]
 func GetOneComment(ctx *gin.Context) {
 	var comment models.Comment
@@ -176,11 +189,13 @@ func GetOneComment(ctx *gin.Context) {
 // @Tags Comment
 // @Accept json
 // @Produce json
+// @Security BearerAuth
 // @Param commentID path integer true "commentID of the data comment to be updated"
-// @Param models.Comment body models.Comment true "updated comment"
+// @Param UpdatedComment body models.RequestComment true "Updated comment"
 // @Success 200 {object} models.Comment
-// @Failed 400 {object} if bad request
-// @Failed 404 if id comment not found
+// @Failure 400 {object} models.ResponseFailed
+// @Failure 401 {object} models.ResponseFailedUnauthorized
+// @Failure 404 {object} models.ResponseFailed
 // @Router /comment/update/{commentID} [put]
 func UpdateComment(ctx *gin.Context) {
 	var comment, findComment models.Comment
@@ -218,6 +233,7 @@ func UpdateComment(ctx *gin.Context) {
 	comment.ID = uint(commentID)
 	comment.CreatedAt = findComment.CreatedAt
 	comment.PhotoID = findComment.PhotoID
+	comment.UserID = findComment.UserID
 
 	err = db.Debug().Model(&comment).Where("id = ?", commentID).Updates(comment).Error
 	if err != nil {
@@ -236,9 +252,12 @@ func UpdateComment(ctx *gin.Context) {
 // @Tags Comment
 // @Accept json
 // @Produce json
+// @Security BearerAuth
 // @Param commentID path integer true "commentID of the data comment to be deleted"
 // @Success 200 {object} models.Comment
-// @Failed 404 if id comment not found
+// @Failure 400 {object} models.ResponseFailed
+// @Failure 401 {object} models.ResponseFailedUnauthorized
+// @Failure 404 {object} models.ResponseFailed
 // @Router /comment/delete/{commentID} [delete]
 func DeleteComent(ctx *gin.Context) {
 	var comment models.Comment

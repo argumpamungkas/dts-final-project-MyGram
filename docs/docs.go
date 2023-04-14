@@ -16,8 +16,77 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/comment/create": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Post a new Comment and add query parameter photo_id for comment",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Comment"
+                ],
+                "summary": "Create Comment",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Photo for comment",
+                        "name": "photo_id",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "description": "Create comment",
+                        "name": "CreateComment",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.RequestComment"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/models.Comment"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailed"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailedUnauthorized"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailed"
+                        }
+                    }
+                }
+            }
+        },
         "/comment/delete/{commentID}": {
             "delete": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
                 "description": "Delete data comment by id",
                 "consumes": [
                     "application/json"
@@ -44,12 +113,35 @@ const docTemplate = `{
                         "schema": {
                             "$ref": "#/definitions/models.Comment"
                         }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailed"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailedUnauthorized"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailed"
+                        }
                     }
                 }
             }
         },
         "/comment/getAll": {
             "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
                 "description": "Get details of all comment or add query parameter photo_id for all comment from photo_id",
                 "consumes": [
                     "application/json"
@@ -61,11 +153,37 @@ const docTemplate = `{
                     "Comment"
                 ],
                 "summary": "Get details of All comment",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Get all comment from photo_id",
+                        "name": "photo_id",
+                        "in": "query"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/models.Comment"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailed"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailedUnauthorized"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailed"
                         }
                     }
                 }
@@ -73,6 +191,11 @@ const docTemplate = `{
         },
         "/comment/getOne/{commentID}": {
             "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
                 "description": "Get details of comment corresponding to the input commentID",
                 "consumes": [
                     "application/json"
@@ -99,39 +222,23 @@ const docTemplate = `{
                         "schema": {
                             "$ref": "#/definitions/models.Comment"
                         }
-                    }
-                }
-            }
-        },
-        "/comment/post": {
-            "post": {
-                "description": "Post a new Comment, NOTE : id auto increment, so in body id is deleted. and add query parameter photo_id for comment",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Comment"
-                ],
-                "summary": "Post Comment",
-                "parameters": [
-                    {
-                        "description": "create comment",
-                        "name": "models.Comment",
-                        "in": "body",
-                        "required": true,
+                    },
+                    "400": {
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/models.Comment"
+                            "$ref": "#/definitions/models.ResponseFailed"
                         }
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "Created",
+                    },
+                    "401": {
+                        "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/models.Comment"
+                            "$ref": "#/definitions/models.ResponseFailedUnauthorized"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailed"
                         }
                     }
                 }
@@ -139,6 +246,11 @@ const docTemplate = `{
         },
         "/comment/update/{commentID}": {
             "put": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
                 "description": "Update data comment by id",
                 "consumes": [
                     "application/json"
@@ -159,12 +271,12 @@ const docTemplate = `{
                         "required": true
                     },
                     {
-                        "description": "updated comment",
-                        "name": "models.Comment",
+                        "description": "Updated comment",
+                        "name": "UpdatedComment",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.Comment"
+                            "$ref": "#/definitions/models.RequestComment"
                         }
                     }
                 ],
@@ -174,12 +286,35 @@ const docTemplate = `{
                         "schema": {
                             "$ref": "#/definitions/models.Comment"
                         }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailed"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailedUnauthorized"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailed"
+                        }
                     }
                 }
             }
         },
         "/photo/delete/{photoID}": {
             "delete": {
+                "security": [
+                    {
+                        "": []
+                    }
+                ],
                 "description": "Delete data photo by id",
                 "consumes": [
                     "application/json"
@@ -190,7 +325,7 @@ const docTemplate = `{
                 "tags": [
                     "Photo"
                 ],
-                "summary": "Delete data photo with photoID",
+                "summary": "Delete data photo",
                 "parameters": [
                     {
                         "type": "integer",
@@ -206,13 +341,36 @@ const docTemplate = `{
                         "schema": {
                             "$ref": "#/definitions/models.Photo"
                         }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailed"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailedUnauthorized"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailed"
+                        }
                     }
                 }
             }
         },
         "/photo/getAll": {
             "get": {
-                "description": "Get details of all photo or add query parameter user_id for all photo from user_id",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Get details of all photo or add query parameter user_id for all photo from user_id (optional)",
                 "consumes": [
                     "application/json"
                 ],
@@ -223,11 +381,37 @@ const docTemplate = `{
                     "Photo"
                 ],
                 "summary": "Get details of All photo",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Get all photo filter by user_id",
+                        "name": "user_id",
+                        "in": "query"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/models.Photo"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailed"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailedUnauthorized"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailed"
                         }
                     }
                 }
@@ -235,6 +419,11 @@ const docTemplate = `{
         },
         "/photo/getOne/{photoID}": {
             "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
                 "description": "Get details of photo corresponding to the input photoID",
                 "consumes": [
                     "application/json"
@@ -261,12 +450,35 @@ const docTemplate = `{
                         "schema": {
                             "$ref": "#/definitions/models.Photo"
                         }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailed"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailedUnauthorized"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailed"
+                        }
                     }
                 }
             }
         },
         "/photo/post": {
             "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
                 "description": "Post a new Photo, NOTE : id auto increment, so in body id is deleted",
                 "consumes": [
                     "application/json"
@@ -280,12 +492,12 @@ const docTemplate = `{
                 "summary": "Post Photo",
                 "parameters": [
                     {
-                        "description": "create photo",
-                        "name": "models.Photo",
+                        "description": "Post photo",
+                        "name": "PostPhoto",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.Photo"
+                            "$ref": "#/definitions/models.RequestPhoto"
                         }
                     }
                 ],
@@ -295,13 +507,25 @@ const docTemplate = `{
                         "schema": {
                             "$ref": "#/definitions/models.Photo"
                         }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailed"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailedUnauthorized"
+                        }
                     }
                 }
             }
         },
         "/photo/update/{photoID}": {
             "put": {
-                "description": "Update data social media by id, NOTE: photo is not updated, just title and caption can be updated, so in the body photo_url doesn't use",
+                "description": "Update data photo by id, NOTE: photo is not updated, just title and caption can be updated, so in the body photo_url doesn't use",
                 "consumes": [
                     "application/json"
                 ],
@@ -321,12 +545,12 @@ const docTemplate = `{
                         "required": true
                     },
                     {
-                        "description": "updated photo",
-                        "name": "models.Photo",
+                        "description": "Update photo",
+                        "name": "UpdatePhoto",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.Photo"
+                            "$ref": "#/definitions/models.RequestPhoto"
                         }
                     }
                 ],
@@ -336,12 +560,35 @@ const docTemplate = `{
                         "schema": {
                             "$ref": "#/definitions/models.Photo"
                         }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailed"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailedUnauthorized"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailed"
+                        }
                     }
                 }
             }
         },
         "/social-media/create": {
             "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
                 "description": "Post create a new social media, NOTE : id auto increment, so in body id is deleted",
                 "consumes": [
                     "application/json"
@@ -356,11 +603,11 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "description": "create social media",
-                        "name": "models.SocialMedia",
+                        "name": "SocialMedia",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.SocialMedia"
+                            "$ref": "#/definitions/models.RequestSocialMedia"
                         }
                     }
                 ],
@@ -370,12 +617,29 @@ const docTemplate = `{
                         "schema": {
                             "$ref": "#/definitions/models.SocialMedia"
                         }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailed"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailedUnauthorized"
+                        }
                     }
                 }
             }
         },
         "/social-media/delete/{socialMediaID}": {
             "delete": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
                 "description": "Delete data social media by id",
                 "consumes": [
                     "application/json"
@@ -386,7 +650,7 @@ const docTemplate = `{
                 "tags": [
                     "Social Media"
                 ],
-                "summary": "Delete data social media with socialMediaID",
+                "summary": "Delete data social media",
                 "parameters": [
                     {
                         "type": "integer",
@@ -402,13 +666,36 @@ const docTemplate = `{
                         "schema": {
                             "$ref": "#/definitions/models.SocialMedia"
                         }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailed"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailedUnauthorized"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailed"
+                        }
                     }
                 }
             }
         },
         "/social-media/getAll": {
             "get": {
-                "description": "Get details of all social media or add query parameter user_id for all social media from it",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Get details of all social media or add query parameter user_id for all social media from user_id (optional)",
                 "consumes": [
                     "application/json"
                 ],
@@ -418,12 +705,38 @@ const docTemplate = `{
                 "tags": [
                     "Social Media"
                 ],
-                "summary": "Get details of All social media",
+                "summary": "Get details of all social media",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Get all social media filter by user_id",
+                        "name": "user_id",
+                        "in": "query"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/models.SocialMedia"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailed"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailedUnauthorized"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailed"
                         }
                     }
                 }
@@ -431,6 +744,11 @@ const docTemplate = `{
         },
         "/social-media/getOne/{socialMediaID}": {
             "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
                 "description": "Get details of social media corresponding to the input socialMediaID",
                 "consumes": [
                     "application/json"
@@ -457,12 +775,35 @@ const docTemplate = `{
                         "schema": {
                             "$ref": "#/definitions/models.SocialMedia"
                         }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailed"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailedUnauthorized"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailed"
+                        }
                     }
                 }
             }
         },
         "/social-media/update/{socialMediaID}": {
             "put": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
                 "description": "Update data social media by id",
                 "consumes": [
                     "application/json"
@@ -473,7 +814,7 @@ const docTemplate = `{
                 "tags": [
                     "Social Media"
                 ],
-                "summary": "Updated data social media with socialMediaID",
+                "summary": "Updated data social media",
                 "parameters": [
                     {
                         "type": "integer",
@@ -484,11 +825,11 @@ const docTemplate = `{
                     },
                     {
                         "description": "updated social media",
-                        "name": "models.SocialMedia",
+                        "name": "SocialMedia",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.SocialMedia"
+                            "$ref": "#/definitions/models.RequestSocialMedia"
                         }
                     }
                 ],
@@ -497,6 +838,24 @@ const docTemplate = `{
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/models.SocialMedia"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailed"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailedUnauthorized"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailed"
                         }
                     }
                 }
@@ -517,12 +876,12 @@ const docTemplate = `{
                 "summary": "Login User",
                 "parameters": [
                     {
-                        "description": "login user",
-                        "name": "models.User",
+                        "description": "User Login",
+                        "name": "UserLogin",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.User"
+                            "$ref": "#/definitions/models.RequestUserLogin"
                         }
                     }
                 ],
@@ -530,7 +889,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.User"
+                            "$ref": "#/definitions/models.LoginResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailed"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseFailed"
                         }
                     }
                 }
@@ -558,6 +929,14 @@ const docTemplate = `{
                 },
                 "user_id": {
                     "type": "integer"
+                }
+            }
+        },
+        "models.LoginResponse": {
+            "type": "object",
+            "properties": {
+                "token": {
+                    "type": "string"
                 }
             }
         },
@@ -593,6 +972,66 @@ const docTemplate = `{
                 }
             }
         },
+        "models.RequestComment": {
+            "type": "object",
+            "properties": {
+                "comment_message": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.RequestPhoto": {
+            "type": "object",
+            "properties": {
+                "caption": {
+                    "type": "string"
+                },
+                "photo_url": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.RequestSocialMedia": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "social_media_url": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.RequestUserLogin": {
+            "type": "object",
+            "properties": {
+                "password": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.ResponseFailed": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.ResponseFailedUnauthorized": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
         "models.SocialMedia": {
             "type": "object",
             "properties": {
@@ -615,50 +1054,13 @@ const docTemplate = `{
                     "type": "integer"
                 }
             }
-        },
-        "models.User": {
-            "type": "object",
-            "properties": {
-                "age": {
-                    "type": "integer"
-                },
-                "comments": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/models.Comment"
-                    }
-                },
-                "created_at": {
-                    "type": "string"
-                },
-                "email": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "password": {
-                    "type": "string"
-                },
-                "photos": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/models.Photo"
-                    }
-                },
-                "socials_media": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/models.SocialMedia"
-                    }
-                },
-                "updated_at": {
-                    "type": "string"
-                },
-                "username": {
-                    "type": "string"
-                }
-            }
+        }
+    },
+    "securityDefinitions": {
+        "BearerAuth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
         }
     }
 }`

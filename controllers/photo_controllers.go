@@ -20,8 +20,11 @@ import (
 // @Tags Photo
 // @Accept json
 // @Produce json
-// @Param models.Photo body models.Photo true "create photo"
+// @Security BearerAuth
+// @Param PostPhoto body models.RequestPhoto true "Post photo"
 // @Success 201 {object} models.Photo
+// @Failure 400 {object} models.ResponseFailed
+// @Failure 401 {object} models.ResponseFailedUnauthorized
 // @Router /photo/post [post]
 func CreatePhoto(ctx *gin.Context) {
 	var photo models.Photo
@@ -76,11 +79,16 @@ func CreatePhoto(ctx *gin.Context) {
 
 // GetAllPhoto godoc
 // @Summary Get details of All photo
-// @Description Get details of all photo or add query parameter user_id for all photo from user_id
+// @Description Get details of all photo or add query parameter user_id for all photo from user_id (optional)
 // @Tags Photo
 // @Accept json
 // @Produce json
+// @Security BearerAuth
+// @Param user_id query integer false "Get all photo filter by user_id"
 // @Success 200 {object} models.Photo
+// @Failure 400 {object} models.ResponseFailed
+// @Failure 401 {object} models.ResponseFailedUnauthorized
+// @Failure 404 {object} models.ResponseFailed
 // @Router /photo/getAll [get]
 func GetAllPhoto(ctx *gin.Context) {
 	var photos []models.Photo
@@ -127,8 +135,12 @@ func GetAllPhoto(ctx *gin.Context) {
 // @Tags Photo
 // @Accept json
 // @Produce json
+// @Security BearerAuth
 // @Param photoID path integer true "ID of the photo"
 // @Success 200 {object} models.Photo
+// @Failure 400 {object} models.ResponseFailed
+// @Failure 401 {object} models.ResponseFailedUnauthorized
+// @Failure 404 {object} models.ResponseFailed
 // @Router /photo/getOne/{photoID} [get]
 func GetOnePhoto(ctx *gin.Context) {
 	var photo models.Photo
@@ -156,15 +168,16 @@ func GetOnePhoto(ctx *gin.Context) {
 
 // UpdatePhoto godoc
 // @Summary Updated data photo with socialMediaID
-// @Description Update data social media by id, NOTE: photo is not updated, just title and caption can be updated, so in the body photo_url doesn't use
+// @Description Update data photo by id, NOTE: photo is not updated, just title and caption can be updated, so in the body photo_url doesn't use
 // @Tags Photo
 // @Accept json
 // @Produce json
 // @Param photoID path integer true "photoID of the data photo to be updated"
-// @Param models.Photo body models.Photo true "updated photo"
+// @Param UpdatePhoto body models.RequestPhoto true "Update photo"
 // @Success 200 {object} models.Photo
-// @Failed 400 {object} if bad request
-// @Failed 404 if id photo not found
+// @Failure 400 {object} models.ResponseFailed
+// @Failure 401 {object} models.ResponseFailedUnauthorized
+// @Failure 404 {object} models.ResponseFailed
 // @Router /photo/update/{photoID} [put]
 func UpdatePhoto(ctx *gin.Context) {
 	var photo, findPhoto models.Photo
@@ -197,6 +210,7 @@ func UpdatePhoto(ctx *gin.Context) {
 
 	photo.ID = uint(photoID)
 	photo.CreatedAt = findPhoto.CreatedAt
+	photo.UserID = findPhoto.UserID
 
 	err = db.Debug().Model(&photo).Where("id = ?", photoID).Updates(photo).Error
 	if err != nil {
@@ -218,14 +232,17 @@ func UpdatePhoto(ctx *gin.Context) {
 }
 
 // DeletePhoto godoc
-// @Summary Delete data photo with photoID
+// @Summary Delete data photo
 // @Description Delete data photo by id
 // @Tags Photo
 // @Accept json
 // @Produce json
+// @Security
 // @Param photoID path integer true "photoID of the data photo to be deleted"
 // @Success 200 {object} models.Photo
-// @Failed 404 if id photo not found
+// @Failure 400 {object} models.ResponseFailed
+// @Failure 401 {object} models.ResponseFailedUnauthorized
+// @Failure 404 {object} models.ResponseFailed
 // @Router /photo/delete/{photoID} [delete]
 func DeletePhoto(ctx *gin.Context) {
 	var photo models.Photo

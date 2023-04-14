@@ -10,6 +10,10 @@ import (
 // @description This is a final project Hacktiv8
 // @host localhost:8080
 // @BasePath /
+
+// @securityDefinitions.apikey BearerAuth
+// @in header
+// @name Authorization
 func main() {
 
 	repo.StartDB()

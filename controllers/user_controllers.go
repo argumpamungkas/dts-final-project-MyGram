@@ -50,8 +50,10 @@ func RegisterUser(ctx *gin.Context) {
 // @Tags Login
 // @Accept json
 // @Produce json
-// @Param models.User body models.User true "login user"
-// @Success 200 {object} models.User
+// @Param UserLogin body models.RequestUserLogin true "User Login"
+// @Success 200 {object} models.LoginResponse
+// @Failure 400 {object} models.ResponseFailed
+// @Failure 401 {object} models.ResponseFailed
 // @Router /user/login [post]
 func LoginUser(ctx *gin.Context) {
 	var user models.User
